@@ -2,6 +2,8 @@ import express from "express"
 import config from "./config"
 import initDB from "./config/db"
 import { authRoutes } from "./modules/auth/auth.routes"
+import { userRoutes } from "./modules/users/users.routes"
+import { vehicleRoutes } from "./modules/vehicles/vehicles.routes"
 const app = express()
 const port = config.port
 
@@ -12,6 +14,10 @@ app.get('/', (req, res) => {
 })
 
 app.use("/api/v1", authRoutes);
+
+app.use('/api/v1/users', userRoutes);
+
+app.use('/api/v1/vehicles', vehicleRoutes);
 
 initDB()
 
